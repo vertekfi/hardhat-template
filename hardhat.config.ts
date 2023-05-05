@@ -4,7 +4,6 @@ import "@nomicfoundation/hardhat-toolbox";
 import "@openzeppelin/hardhat-upgrades";
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
-import "@nomiclabs/hardhat-vyper";
 import "@matterlabs/hardhat-zksync-vyper";
 
 dotenv.config();
@@ -24,17 +23,9 @@ const config: HardhatUserConfig = {
     ],
   },
   zksolc: {
-    version: "1.3.5",
+    version: "1.3.10",
     compilerSource: "binary",
     settings: {},
-  },
-  zkvyper: {
-    version: "1.3.5",
-    compilerSource: "binary", // binary or docker
-    settings: {
-      compilerPath: "zkvyper", // ignored for compilerSource: "docker"
-      // libraries{} // optional. References to non-inlinable libraries
-    },
   },
   //  defaultNetwork: "zkSyncTestnet",
   networks: {
@@ -61,6 +52,11 @@ const config: HardhatUserConfig = {
       url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
       ethNetwork: "mainnet", // The identifier of the network (e.g. `mainnet` or `goerli`)
       zksync: true, // Set to true to target zkSync Era.
+    },
+    zkSyncLocal: {
+      url: "http://localhost:3050/",
+      chainId: 270,
+      zksync: true,
     },
   },
   etherscan: {

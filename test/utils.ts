@@ -1,13 +1,12 @@
-import { BigNumber, Contract, ethers } from 'ethers';
-import { parseEther } from 'ethers/lib/utils';
-import * as erc20 from '../node_modules/@openzeppelin/contracts/build/contracts/ERC20.json';
+import { BigNumber, Contract, ethers } from "ethers";
+import { parseEther } from "ethers/lib/utils";
+import * as erc20 from "../node_modules/@openzeppelin/contracts/build/contracts/ERC20.json";
 
-
-export const keccak256 = ethers.utils.solidityKeccak256
+export const keccak256 = ethers.utils.solidityKeccak256;
 
 export const prepStorageSlotWrite = (receiverAddress: string, storageSlot: number) => {
   return ethers.utils.solidityKeccak256(
-    ['uint256', 'uint256'],
+    ["uint256", "uint256"],
     [receiverAddress, storageSlot] // key, slot - solidity mappings storage = keccak256(mapping key value, value at that key)
   );
 };
@@ -22,12 +21,12 @@ export const setStorageAt = async (
   index: string,
   value: BigNumber
 ) => {
-  await provider.send('hardhat_setStorageAt', [
+  await provider.send("hardhat_setStorageAt", [
     contractAddress,
     index,
     toBytes32(value).toString(),
   ]);
-  await provider.send('evm_mine', []); // Just mines to the next block
+  await provider.send("evm_mine", []); // Just mines to the next block
 };
 
 export const giveTokenBalanceFor = async (
@@ -45,18 +44,16 @@ export function getERC20(address: string, signer) {
   return new Contract(address, erc20.abi, signer);
 }
 
-
 export function getRandomBytes32() {
-  const values = ['1', '2', '64', , '128', '256'];
+  const values = ["1", "2", "64", , "128", "256"];
   const rand = Math.round(Math.random() * (values.length - 1));
 
   return ethers.utils.hexZeroPad(parseEther(values[rand]).toHexString(), 32);
 }
 
-
 /**
  * Replicates error string return from OpenZeppelin AccessControl contract
  */
 export function getAccessControlRevertString(account: string, role: string) {
-  return `AccessControl: account ${account.toLowerCase()} is missing role ${role}`
+  return `AccessControl: account ${account.toLowerCase()} is missing role ${role}`;
 }
