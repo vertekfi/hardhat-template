@@ -1,18 +1,20 @@
-import * as dotenv from "dotenv";
-import { HardhatUserConfig } from "hardhat/config";
-import "@nomicfoundation/hardhat-toolbox";
-import "@openzeppelin/hardhat-upgrades";
-import "@matterlabs/hardhat-zksync-deploy";
-import "@matterlabs/hardhat-zksync-solc";
-import "@matterlabs/hardhat-zksync-vyper";
+import * as dotenv from 'dotenv';
+import { HardhatUserConfig } from 'hardhat/config';
+import '@nomicfoundation/hardhat-toolbox';
+import '@openzeppelin/hardhat-upgrades';
+import '@matterlabs/hardhat-zksync-deploy';
+import '@matterlabs/hardhat-zksync-solc';
+import '@matterlabs/hardhat-zksync-vyper';
 
 dotenv.config();
+
+const accounts = process.env.DEV_KEY !== undefined ? [process.env.DEV_KEY] : [];
 
 const config: HardhatUserConfig = {
   solidity: {
     compilers: [
       {
-        version: "0.8.12",
+        version: '0.8.12',
         settings: {
           optimizer: {
             enabled: true,
@@ -23,38 +25,38 @@ const config: HardhatUserConfig = {
     ],
   },
   zksolc: {
-    version: "1.3.10",
-    compilerSource: "binary",
+    version: '1.3.10',
+    compilerSource: 'binary',
     settings: {},
   },
   //  defaultNetwork: "zkSyncTestnet",
   networks: {
     hardhat: {
       forking: {
-        url: process.env.BSC_RPC || "",
+        url: process.env.BSC_RPC || '',
         blockNumber: 25894014,
       },
     },
     goerli: {
-      url: process.env.GOERLI_RPC || "",
-      accounts: process.env.DEV_KEY !== undefined ? [process.env.DEV_KEY] : [],
+      url: process.env.GOERLI_RPC || '',
+      accounts,
     },
     bsc: {
-      url: process.env.BSC_RPC || "",
-      accounts: process.env.DEV_KEY !== undefined ? [process.env.DEV_KEY] : [],
+      url: process.env.BSC_RPC || '',
+      accounts,
     },
     zkSyncTestnet: {
-      url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
-      ethNetwork: "goerli", // The identifier of the network (e.g. `mainnet` or `goerli`)
+      url: 'https://testnet.era.zksync.dev', // The testnet RPC URL of zkSync Era network.
+      ethNetwork: 'goerli', // The identifier of the network (e.g. `mainnet` or `goerli`)
       zksync: true, // Set to true to target zkSync Era.
     },
     zkSync: {
-      url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
-      ethNetwork: "mainnet", // The identifier of the network (e.g. `mainnet` or `goerli`)
+      url: 'https://testnet.era.zksync.dev', // The testnet RPC URL of zkSync Era network.
+      ethNetwork: 'mainnet', // The identifier of the network (e.g. `mainnet` or `goerli`)
       zksync: true, // Set to true to target zkSync Era.
     },
     zkSyncLocal: {
-      url: "http://localhost:3050/",
+      url: 'http://localhost:3050/',
       chainId: 270,
       zksync: true,
     },
