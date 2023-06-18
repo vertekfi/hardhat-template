@@ -17,3 +17,6 @@ forge-cache
 # zkSync
 cache-zk
 artifacts-zk
+
+# OpenZeppelin
+.openzeppelin/unknown-*.json

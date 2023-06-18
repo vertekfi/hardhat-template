@@ -1,10 +1,22 @@
 import { BigNumber, Contract, ethers } from 'ethers';
 import { parseEther } from 'ethers/lib/utils';
+import * as helpers from '@nomicfoundation/hardhat-network-helpers';
 import * as erc20 from '../node_modules/@openzeppelin/contracts/build/contracts/ERC20.json';
 
 export const keccak256 = ethers.utils.solidityKeccak256;
 
-export const prepStorageSlotWrite = (receiverAddress: string, storageSlot: number) => {
+export const giveTokens = async (
+  tokenAddress: string,
+  tokenBalanceOfStorageSlot: number,
+  receiverAddress: string,
+  amount: BigNumber
+) => {
+  const indexHash = prepBalanceStorageSlotWrite(receiverAddress, tokenBalanceOfStorageSlot);
+  await helpers.setStorageAt(tokenAddress, indexHash, toBytes32(amount).toString());
+  await helpers.mine(1);
+};
+
+export const prepBalanceStorageSlotWrite = (receiverAddress: string, storageSlot: number) => {
   return ethers.utils.solidityKeccak256(
     ['uint256', 'uint256'],
     [receiverAddress, storageSlot] // key, slot - solidity mappings storage = keccak256(mapping key value, value at that key)
@@ -32,7 +44,7 @@ export const giveTokenBalanceFor = async (
   storageSlot: number,
   amount: BigNumber
 ) => {
-  const index = prepStorageSlotWrite(addressToSet, storageSlot);
+  const index = prepBalanceStorageSlotWrite(addressToSet, storageSlot);
   await setStorageAt(provider, contractAddress, index, amount);
 };
 

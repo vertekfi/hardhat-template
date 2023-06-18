@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv';
 import { HardhatUserConfig } from 'hardhat/config';
 import '@nomicfoundation/hardhat-toolbox';
 import '@openzeppelin/hardhat-upgrades';
+import 'hardhat-contract-sizer';
 // import '@matterlabs/hardhat-zksync-deploy';
 // import '@matterlabs/hardhat-zksync-solc';
 // import '@matterlabs/hardhat-zksync-vyper';
@@ -33,11 +34,15 @@ const config: HardhatUserConfig = {
     hardhat: {
       forking: {
         url: process.env.ARBITRUM_RPC || '',
-        blockNumber: 25894014,
+        blockNumber: 97443294,
       },
     },
     arbitrum: {
       url: process.env.ARBITRUM_RPC || '',
+      accounts,
+    },
+    optimism: {
+      url: `${process.env.OPTIMISM_RPC}`,
       accounts,
     },
     bsc: {
@@ -59,6 +64,9 @@ const config: HardhatUserConfig = {
     //   chainId: 270,
     //   zksync: true,
     // },
+  },
+  contractSizer: {
+    // override defaults as needed: https://www.npmjs.com/package/hardhat-contract-sizer
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,

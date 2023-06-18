@@ -6,7 +6,8 @@
     "forge:test": "forge test -vvv",
     "forge:test:watch": "forge test --watch --run-all -vvv",
     "deploy": "npx hardhat run ./scripts/deploy.ts",
-    "deploy:zksync:testnet": "npx hardhat --network zkSyncTestnet deploy-zksync"
+    "deploy:zksync:testnet": "npx hardhat --network zkSyncTestnet deploy-zksync",
+    "size-contracts": "npx hardhat size-contracts --no-compile"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.7.0",
@@ -29,15 +30,16 @@
     "@typechain/hardhat": "^6.1.2",
     "@types/chai": "^4.2.0",
     "@types/mocha": "^9.1.0",
-    "@types/node": "^18.7.14",
+    "@types/node": "^16.15.0",
     "chai": "^4.2.0",
     "dotenv": "^16.0.2",
     "ethers": "^5.4.7",
     "hardhat": "^2.9.9",
+    "hardhat-contract-sizer": "^2.10.0",
     "hardhat-gas-reporter": "^1.0.8",
     "prettier": "^2.7.1",
     "prettier-plugin-solidity": "^1.0.0-beta.24",
-    "solidity-coverage": "^0.7.21",
+    "solidity-coverage": "^0.8.1",
     "ts-node": "^10.9.1",
     "typechain": "^8.1.0",
     "typescript": "^4.8.2",
