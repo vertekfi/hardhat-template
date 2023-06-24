@@ -7,7 +7,8 @@
     "forge:test:watch": "forge test --watch --run-all -vvv",
     "deploy": "npx hardhat run ./scripts/deploy.ts",
     "deploy:zksync:testnet": "npx hardhat --network zkSyncTestnet deploy-zksync",
-    "size-contracts": "npx hardhat size-contracts --no-compile"
+    "size-contracts": "npx hardhat size-contracts --no-compile",
+    "compile:watch": "nodemon --ext sol --exec yarn compile"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.7.0",
@@ -37,6 +38,7 @@
     "hardhat": "^2.9.9",
     "hardhat-contract-sizer": "^2.10.0",
     "hardhat-gas-reporter": "^1.0.8",
+    "nodemon": "^2.0.22",
     "prettier": "^2.7.1",
     "prettier-plugin-solidity": "^1.0.0-beta.24",
     "solidity-coverage": "^0.8.1",

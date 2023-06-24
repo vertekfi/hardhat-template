@@ -3,6 +3,7 @@ import { HardhatUserConfig } from 'hardhat/config';
 import '@nomicfoundation/hardhat-toolbox';
 import '@openzeppelin/hardhat-upgrades';
 import 'hardhat-contract-sizer';
+import '@nomiclabs/hardhat-etherscan';
 // import '@matterlabs/hardhat-zksync-deploy';
 // import '@matterlabs/hardhat-zksync-solc';
 // import '@matterlabs/hardhat-zksync-vyper';
