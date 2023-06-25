@@ -4,9 +4,7 @@ import '@nomicfoundation/hardhat-toolbox';
 import '@openzeppelin/hardhat-upgrades';
 import 'hardhat-contract-sizer';
 import '@nomiclabs/hardhat-etherscan';
-// import '@matterlabs/hardhat-zksync-deploy';
-// import '@matterlabs/hardhat-zksync-solc';
-// import '@matterlabs/hardhat-zksync-vyper';
+import 'hardhat-gas-reporter';
 
 dotenv.config();
 
@@ -26,11 +24,15 @@ const config: HardhatUserConfig = {
       },
     ],
   },
-  // zksolc: {
-  //   version: '1.3.10',
-  //   compilerSource: 'binary',
-  //   settings: {},
-  // },
+  contractSizer: {
+    // override defaults as needed: https://www.npmjs.com/package/hardhat-contract-sizer
+  },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY,
+  },
+  gasReporter: {
+    enabled: true,
+  },
   networks: {
     hardhat: {
       forking: {
@@ -50,27 +52,6 @@ const config: HardhatUserConfig = {
       url: process.env.BSC_RPC || '',
       accounts,
     },
-    // zkSyncTestnet: {
-    //   url: 'https://testnet.era.zksync.dev', // The testnet RPC URL of zkSync Era network.
-    //   ethNetwork: 'goerli', // The identifier of the network (e.g. `mainnet` or `goerli`)
-    //   zksync: true, // Set to true to target zkSync Era.
-    // },
-    // zkSync: {
-    //   url: 'https://testnet.era.zksync.dev', // The testnet RPC URL of zkSync Era network.
-    //   ethNetwork: 'mainnet', // The identifier of the network (e.g. `mainnet` or `goerli`)
-    //   zksync: true, // Set to true to target zkSync Era.
-    // },
-    // zkSyncLocal: {
-    //   url: 'http://localhost:3050/',
-    //   chainId: 270,
-    //   zksync: true,
-    // },
-  },
-  contractSizer: {
-    // override defaults as needed: https://www.npmjs.com/package/hardhat-contract-sizer
-  },
-  etherscan: {
-    apiKey: process.env.ETHERSCAN_API_KEY,
   },
 };
 
