@@ -1,9 +1,9 @@
 [profile.default]
 src = 'contracts'
-out = 'forge-artifacts'
 libs = ['node_modules', 'lib']
 test = 'test/forge'
-cache_path = 'forge-cache'
+out = 'artifacts_forge'
+cache_path = 'cache_forge'
 
 optimizer = true
 optimizer_runs = 9999

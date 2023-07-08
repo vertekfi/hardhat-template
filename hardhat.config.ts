@@ -2,8 +2,8 @@ import * as dotenv from 'dotenv';
 import { HardhatUserConfig } from 'hardhat/config';
 import '@nomicfoundation/hardhat-toolbox';
 import '@openzeppelin/hardhat-upgrades';
-import 'hardhat-contract-sizer';
 import '@nomiclabs/hardhat-etherscan';
+import 'hardhat-contract-sizer';
 import 'hardhat-gas-reporter';
 
 dotenv.config();
